@@ -1,38 +1,98 @@
 
-table_id: mythic-beanbag-464006-n5.TEST_DB.ORIGINATIONS
-dataset_id: mythic-beanbag-464006-n5.TEST_DB
-table_description: Google BigQuery Table containing Loan application data including
-  applicant salary, loan details, and risk profiling.
+table_id: data-analytics-254406.mart_portfolio_management.originations
+dataset_id: data-analytics-254406.mart_portfolio_management.
+table_description: Google BigQuery Table containing loan Disbursement data including customer information and loan details for disbursed loans.
 string_lookup_fields:
-  policy
+  policy_group
+  loan_type
+  company_name
+  company_status
   group_name
   industry
+  nationality
+  gender
+  employment_rank
+  marital_status
+  employment_type
+#  group_name_aggregated
+#  company_name_aggregated
 headers:
-  policy: Loan policy identifier, always use like
-  Term: Duration of the loan in months
-  Loan_Amount: Principal loan amount granted
-  date_application: Date when the borrower applied for the loan
-  gross_salary: Monthly income before deductions
-  net_salary: Monthly income after deductions
-  Installment: Monthly loan installment (EMI)
-  NTHP: Net Take Home Pay Ratio after EMI payment
-  Multiplier: Ratio used for affordability or loan assessment
-  DTI: Debt-to-Income ratio, Installment divided by net salary
-  disbursed_date: Date on which loan was disbursed
-  interest_rate: Annual interest rate applied to the loan
-  company_id: Identifier for the lending company
-  company_status: Status of the company or loan product lifecycle
-  industry: Industry classification of borrower or company
-  group_name: Sub-group or cluster within company or industry
-  launch_date: Date the loan product or company group launched
-  Exception_lending: Flag indicating exception-based loan approval (0 = no, 1 = yes)
+  application_id: Primary key for loan application. one user can have many applications, some may be rejected and some may be approved.
+  product_id: Primary key for disbursed loan application ( a.k.a loan product).
+  borrower_id: Primary key to identify the borrowers. a user once his loan is approved and disbursed will be a borrower.
+  employee_id: Primary key to identify the borrower's employee id in the company.
+  simulation_id: Primary key to identify the information used for underwriting, one application will have many simulation_ids based on the constantly updating application information.
+  company_id: Primary key to identify the company the borrower works for. We tie up with the company to start lending to its employees.
+  loan_key: Primary key for disbursed loans application ( a.k.a loan product). One on one mapping with product_id.
+  user_id: Primary key to identify the borrower. One on one mapping with borrower_id.
+  policy_group: Identifier to understand which underwriting policy was used for the loan, always use like.
+  loan_type: Type of loan like :- New Loan - a fresh loan, Refinanced Loan - next loan by prematurely closing the primary loan and adding the outstanding balance of first loan to the next loan and adding , Reloan, Reissue, EWA.
+  loan_term: Duration of the loan in months.
+  loan_principal: Principal loan amount disbursed, included the fees and charges.
+  monthly_gross_salary: Monthly income before any deductions.
+  monthly_net_salary: Monthly income after all deductions.
+  monthly_payment: Monthly payments (installment or EMI) towards the the salary loans.
+  payslip_payment: Payments (installment or EMI) towards the the salary loans per payslip.
+  payroll_freq: Frequency of salary for the user in a month.
+  payroll_type_factor: the factor that you can multiply with for each payroll factor to arrive at the monthly numbers.
+  nthp: Acronym for Net Take Home Pay (after all deductions) percentage compared to the gross payment for the borrower.
+  loan_multiplier: Ratio of loan_principal by monthly_gross_salary used for affordability and assessment.
+  gross_dti: Debt-to-Income ratio, monthly_payment divided by monthly_gross_salary.
+  net_dti: Debt-to-Income ratio, monthly_payment divided by monthly_net_salary.
+  disbursed_date: The date on which the loan was disbursed.
+  approved_date: The date on which the loan was approved.
+  simple_monthly_interest_rate: Simple monthly interest rate charged to the borrower on the loan.
+  company_name: Name of the borrowers employer (or company).
+  company_status: Status of the borrowers employer e.g. ACTIVE, ON-HOLD, etc.
+  group_name: Name of the borrowers employer group ( or umbrella corporation).
+  industry: Industry classification of borrower's company.
+#  group_name_aggregated: Name of the borrowers employer's group ( or umbrella corporation) aggregates to keep top 95% percentiles of loans and categorise rest as others.
+#  company_name_aggregated: Name of the borrowers employer's company aggregates to keep top 95% percentiles of loans and categorise rest as others.
+  launch_date: The start date for us to start lending to the employees of the company.
+  offer_triggered_by: Value indicating MANUAL underwriting, If value is MANUAL then it is MANUAL underwriting.
+  vip_tag: Flag indicating id the borrower is a VIP and receives a different underwriting treatment.
+  disbursed_amount: This is the amount left after deducting the fees and charges from loan principal. Rarely used for any analysis.
+#  purpose: Purpose of taking the loan.
+  nationality: Nationality of the borrower.
+  gender: Gender of the borrower.
+  employment_rank: Borrowers level or rank in the company.
+  marital_status: Borrowers martial status.
+  employment_type: Borrowers employment type like part-time, full-time etc.
   origination_fee: Processing fee charged for originating the loan
-  borrower_tenure: Length of borrower's employment or credit history
-  borrowers_age: Age of the borrower
-  max_loan_term: Maximum loan duration allowed for this product
-  loan_type_detailed: Detailed classification of the loan (e.g. New Loan, Reloan,
-    Refinanced Loan, Matured Loan, Early Reloan)
-  is_refinanced: Flag indicating if the loan is refinanced (0 = no, 1 = yes)
-  Product_key: Unique product ID for the loan product
-  application_key: Unique ID of the specific loan application
-  risk_score: Credit or risk score of the borrower Higher the lower
+  disb_week: Start date of the week of the loan disbursement.
+  borrower_tenure: Length of borrower's employment with the current employer.
+  borrowers_age: Age of the borrower in months.
+  max_loan_term: Maximum months of loans the borrower was eligible while selecting the loan. Borrower has a option to chose anything less than or equal to this.
+  disbursed_month: Start date of the month of the loan disbursement.
+  disbursed_quarter: Quarter of the loan disbursement.
+  disbursed_year: Year of the loan disbursement.
+  non_starter_2mob: Flag to indicate if the borrower has not paid anything for first 2 months from disbursement.
+  non_starter_3mob: Flag to indicate if the borrower has not paid anything for first 3 months from disbursement.
+  churn_date: Date indicating when the borrower got separated from the company.
+  churn_endorsed_date: Date when the separation was informed to us by the employer company.
+  principal_at_default: The principal component of the outstanding amount of the loan when the borrower separated from the company.
+  outstanding_at_default: The total outstanding of the outstanding amount of the loan when the borrower separated from the company.
+  backpay_billed: After borrower's separation from employer, this is the amount that we bill to the company to be deducted from the borrowers final settlement pay.
+  backpay_received: After borrower's separation from employer, this is the amount that we receive from the company, deducted from the borrowers final settlement pay.
+  churn_flag: Flag indicating if the borrower is separated from the employer.
+  principal_outstanding: Principal outstanding of the loan os of current date.
+  interest_outstanding: Interest outstanding of the loan os of current date.
+  total_outstanding: Total outstanding of the loan os of current date.
+  mob: Months completed by the loan (a.k.a. months on books), i.e. the gap in months between disbursed date and today's date
+  churn_3mob: Flag indicating if the borrower is separated from the employer at the end of 3 months on books.
+  churn_6mob: Flag indicating if the borrower is separated from the employer at the end of 6 months on books.
+  churn_9mob: Flag indicating if the borrower is separated from the employer at the end of 9 months on books.
+  churn_12mob: Flag indicating if the borrower is separated from the employer at the end of 12 months on books.
+  completed_date: Date of completion of the loan.
+  is_reissued: Flag to indicated if the loan is reissued. A loan is reissued if there is a issue in loan configuration like incorrect payment frequency, change of company, etc.
+  loan_type_detailed: Detailed classification of the loan (e.g. New Loan, Reloan, Refinanced Loan, Matured Loan, Early Reloan).
+  is_refinanced: Flag indicating if the loan is refinanced (0 = no, 1 = yes).
+  parent_loan_key: Parent loan key for this loan, Will always be Null for first loan.
+  is_BPO: Boolean flag if the industry or company is BPO or Not ( or Non-BPO).
+  apr: Annual interest rate applied to the loan.
+  net_disbursed_amount: The net amount that we received by the borrowers after deducting the fees, charges and the previous outstanding amount (only in case of refinanced loans) from the loan principal.
+  flag_early_reloan: Flag to identify loans which are taken right after payment of previous loan but previous loans are not closed in system due to delay in processes.
+  bank_fee: Fee for disbursement of loan and bank transactions.
+  child_loan_key: The child loan key for the refinanced loans.
+  XIRR: Effective annual rate of interest tracked by regulator to ensure it is below 100%
+  date_application: Date when the borrower applied for the loan

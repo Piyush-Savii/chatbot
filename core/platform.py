@@ -70,6 +70,10 @@ class PlatformBase:
             return validation_response
 
         event = body.get("event", {})
+        if event.get("user") == os.getenv("SELF_ID"):
+            logger.info(f"in {func} self message loop\n")
+            return {"status": "self_response"}
+
         user_query, channel_id, user_id = extract_query_and_metadata(event, self.bot_name)
 
         slack_user_info = self.slack_client.users_info(user=user_id)
