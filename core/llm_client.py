@@ -258,6 +258,7 @@ def test_llm_connections(ai_provider: str) -> str:
     logger.info(f" entered {func} with provider {ai_provider}")
 
     client = LLMClient(ai_provider)
+    logger.info(f" in {func} client setup")
     try:
         result = client.respond([
             {"role": "system", "content": f"You are a friendly assistant from {ai_provider}."},

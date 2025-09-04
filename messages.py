@@ -93,7 +93,7 @@ def validate_event(body: Dict, user_manager) -> Union[Dict[str, str], None]:
     # Validate event type
     event = body.get("event", {})
     event_type = event.get("type")
-    if event_type != "app_mention":
+    if event_type not in ("app_mention","message"):
         logger.info(f" in {func} 📥 Not an app_mention, but {event_type}\n")
         return {"status": "error"}
 
