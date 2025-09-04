@@ -115,9 +115,13 @@ def extract_query_and_metadata(event: Dict, bot_name: str) -> Tuple[str, str, st
     func = "extract_query_and_metadata"
     logger.info(f" entered {func}\n")
     user_text = event.get("text", "")
+    logger.debug(f" in {func} 📥 extracted user_text -{user_text}\n")
     channel_id = event.get("channel")
+    logger.debug(f" in {func} 📥 extracted channel_id -{channel_id}\n")
     user_id = event.get("user")
+    logger.debug(f" in {func} 📥 extracted user_id -{user_id}\n")
     query = re.sub(r"<@[^>]+>", bot_name, user_text).strip()
+    logger.debug(f" in {func} 📥 extracted query -{query}\n")
 
     return query, channel_id, user_id
 
