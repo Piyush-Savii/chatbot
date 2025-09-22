@@ -32,6 +32,10 @@ AVAILABLE_TOOLS = [
 from enum import EnumMeta
 import copy
 
+
+"""
+    IS THIS SOMETHING ??
+"""
 def sanitize_tool_for_gemini(tool):
     tool = copy.deepcopy(tool)
     if tool.get("type") != "function":
@@ -68,7 +72,7 @@ class LLMClient:
         self.llm_model = self.llm_config["model"]
 
         if self.llm_provider == "gemini":
-            self.llm_client = OpenAI(
+            self.llm_client = OpenAI(                         #is gemini and openai both have same api ??
                 api_key=self.llm_api_key,
                 base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
             )
