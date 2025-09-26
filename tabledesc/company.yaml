@@ -1,0 +1,22 @@
+
+table_id: data-analytics-254406.mart_portfolio_management.company
+dataset_id: data-analytics-254406.mart_portfolio_management.
+table_description: Google BigQuery Table containing companies whose employees we lend to, we have a legal agreement with these companies for the salary deductions.
+string_lookup_fields:
+  company_name
+  company_status
+  industry
+  group_name
+  payroll_freq
+  rm_name
+headers:
+  company_key: Primary key to identify the company the borrower works for. We tie up with the company to start lending to its employees.
+  company_id: Primary key to identify the company the borrower works for. We tie up with the company to start lending to its employees.
+  company_name: Name of the company the borrower works for. We tie up with the company to start lending to its employees.
+  company_status: Status of the borrower's employer, e.g., ACTIVE, ON-HOLD, etc.
+  group_name: Name of the borrower's employer group ( or umbrella corporation).
+  industry: Industry classification of the borrower's company.payroll_freq: 
+  employee_count: The employee count of the company, i.e., the count of employees who work in that company 
+  launch_month: The start month for us to start lending to the employees of the company. 
+  rm_name: name of the relationship manager we have assigned to deal with the day to day matters with the contact from company 
+
