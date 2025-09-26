@@ -1,0 +1,86 @@
+
+table_id: data-analytics-254406.mart_portfolio_management.originations
+dataset_id: data-analytics-254406.mart_portfolio_management.
+table_description: Google BigQuery Table containing loan applications data and prospective borrowers data. Perhaps different from the originations data if the user changes their data after disbursement.
+string_lookup_fields:
+  policy_group
+  loan_type
+  company_name
+  company_status
+  group_name
+  industry
+  nationality
+  gender
+  employment_rank
+  marital_status
+  employment_type
+  purpose
+headers:
+  application_id: Primary key for loan application. one user can have many applications, some may be rejected, and some may be approved.
+  date_application: Date when the borrower applied for the loan
+  month_application: Month when the borrower applied for the loan
+  week_application: Week start date (or end date) when the borrower applied for the loan
+  loan_key: Primary key for disbursed loans application ( a.k.a loan product). One-on-one mapping with product_id.
+  user_id: Primary key to identify the borrower. One-on-one mapping with borrower_id.
+  borrower_key: Primary key to identify the borrowers. A user, once his loan is approved and disbursed, will be a borrower.
+  loan_type: Type of loan, like:- New Loan - a fresh loan, Refinanced Loan - next loan by prematurely closing the primary loan and adding the outstanding balance of the first loan to the next loan and adding , Reloan, Reissue, EWA.
+  company_name: Name of the borrower's employer (or company).
+  company_status: Status of the borrower's employer e.g. ACTIVE, ON-HOLD, etc.
+  status:
+  status_agg:
+  prev_status:
+  dtime_initialized:
+  dtime_offer_accepted:
+  dtime_incomplete_document:
+  dtime_tier_1_review:
+  dtime_approved:
+  dtime_cancelled:
+  not_eligible_code:
+  not_eligible_description:
+  cancellation_reason:
+  vip_tag: Flag indicating id the borrower is a VIP and receives a different underwriting treatment.
+  company_name:
+  group_name: Name of the borrower's employer group ( or umbrella corporation).
+  industry: Industry classification of the borrower's company.
+  simulation_id: Primary key to identify the information used for underwriting; one application will have many simulation_ids based on the constantly updating application information.
+  company_id: Primary key to identify the company the borrower works for. We tie up with the company to start lending to its employees.
+  offer_triggered_by:
+  requested_amount:
+  requested_term:
+  maximum_loan_amount:
+  maximum_loan_term:
+  policy_group:
+  loan_amount: Requested principal loan amount
+  loan_term: Requested duration of the loan in months.
+  age:	
+  monthly_salary: Monthly income before any deductions.
+  tenure:
+  is_BPO: Boolean flag if the industry or company is BPO or not ( or Non-BPO).
+  cancellation_triggered_by:
+  policy_group_aggregated: Identifier to understand which underwriting policy was used for the loan, always use like.
+  flag_early_reloan:
+  dti_max_amount:
+  nthp_max_amount: Maximum loan amount that can be given after the capping limit for Net Take Home Pay. 
+  XIRR: Effective annual rate of interest tracked by the regulator to ensure it is below 100%
+  salary_multiplier_max_amount:	
+
+  loan_multiplier: Ratio of loan_principal by monthly_gross_salary used for affordability and assessment.
+  gross_dti: Debt-to-Income ratio, monthly_payment divided by monthly_gross_salary.
+  net_dti: Debt-to-Income ratio, monthly_payment divided by monthly_net_salary.
+  offer_triggered_by: Value indicating MANUAL underwriting. If the value is MANUAL, then it is MANUAL underwriting.
+  gender: Gender of the borrower.
+  employment_rank: Borrowers' level or rank in the company.
+  marital_status: Borrower's marital status.
+  employment_type: Borrowers' employment typ,e like part-time, full-time, etc.
+  borrower_tenure: Length of borrower's employment with the current employer.
+  borrowers_age: Age of the borrower in months.
+  max_loan_term: Maximum months of loans the borrower was eligible while selecting the loan. Borrower has a option to chose anything less than or equal to this.
+  is_reissued: Flag to indicate if the loan is reissued. A loan is reissued if there is an issue in the loan configuration, like incorrect payment frequency, a change of company, etc.
+  loan_type_detailed: Detailed classification of the loan (e.g., New Loan, Reloan, Refinanced Loan, Matured Loan, Early Reloan).
+  is_refinanced: Flag indicating if the loan is refinanced (0 = no, 1 = yes).
+  parent_loan_key: Parent loan key for this loan. It should always be Null for the first loan.
+  flag_early_reloan: Flag to identify loans that are taken right after payment of the previous loan, but the previous loans are not closed in the system due to a delay in processes.
+  
+  
+  
+  
