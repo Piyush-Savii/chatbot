@@ -19,40 +19,38 @@ string_lookup_fields:
   policy_group_aggregated
 headers:
   application_id: Primary key for loan application. One user can have multiple applications, some of which may be rejected, while others may be approved.
-  date_application: Date when the borrower applied for the loan
-  month_application: Month when the borrower applied for the loan
-  week_application: Week start date (or end date) when the borrower applied for the loan
+  date_application: Date when the borrower applied for the loan.
+  month_application: Month when the borrower applied for the loan.
+  week_application: Week start date (or end date) when the borrower applied for the loan.
   loan_key: Primary key for disbursed loans application ( a.k.a loan product). One-on-one mapping with product_id.
   user_id: Primary key to identify the borrower. One-on-one mapping with borrower_id.
   borrower_key: Primary key to identify the borrowers. A user, once his loan is approved and disbursed, will be a borrower.
   loan_type: Type of loan, like:- New Loan - a fresh loan, Refinanced Loan - next loan by prematurely closing the primary loan and adding the outstanding balance of the first loan to the next loan and adding , Reloan, Reissue, EWA.
   company_name: Name of the borrower's employer (or company).
   company_status: Status of the borrower's employer e.g. ACTIVE, ON-HOLD, etc.
-  status: current detailed status of the application
-  status_agg: aggregated applications status like Disbursed, Approved, Cancelled, and the rest as In Process
-  prev_status: application status before the current status
-  dtime_initialized: status_date when the status is INITIALIZED. In case the record with status INITIALIZED is not present, we are fetching the created date from the application-service
-  dtime_offer_accepted: timestamp when application reached OFFER_ACCEPTED status (PHT)
-  dtime_incomplete_document: timestamp when application reached INCOMPLETE_DOCUMENT status (PHT)
-  dtime_tier_1_review: timestamp when application reached TIER_1_REVIEW status (PHT)
-  dtime_approved: timestamp when application reached APPROVED status (PHT)
-  dtime_cancelled: timestamp when application reached CANCELLED status (PHT)
-  not_eligible_code: Code for the reason of loan ineligibility
-  not_eligible_description: Description for the reason of loan ineligibility
-  cancellation_reason: Reason of loan cancellation
+  status: current detailed status of the application.
+  status_agg: aggregated applications status like Disbursed, Approved, Cancelled, and the rest as In Process.
+  prev_status: application status before the current status.
+  dtime_initialized: status_date when the status is INITIALIZED. In case the record with status INITIALIZED is not present, we are fetching the created date from the application-service.
+  dtime_offer_accepted: timestamp when application reached OFFER_ACCEPTED status (PHT).
+  dtime_incomplete_document: timestamp when application reached INCOMPLETE_DOCUMENT status (PHT).
+  dtime_tier_1_review: timestamp when application reached TIER_1_REVIEW status (PHT).
+  dtime_approved: timestamp when application reached APPROVED status (PHT).
+  dtime_cancelled: timestamp when application reached CANCELLED status (PHT).
+  not_eligible_code: Code for the reason of loan ineligibility.
+  not_eligible_description: Description for the reason of loan ineligibility.
+  cancellation_reason: Reason of loan cancellation.
   vip_tag: Flag indicating whether the borrower is a VIP and receives a different underwriting treatment.
   group_name: Name of the borrower's employer group ( or umbrella corporation).
   industry: Industry classification of the borrower's company.
-  simulation_id: Primary key to identify the information used for underwriting; one application will have many simulation_ids based on the constantly updating application information.
+  simulation_id: Primary key to identify the information used for underwriting. One application will have many simulation_ids based on the constantly updating application information.
   company_id: Primary key to identify the company the borrower works for. We tie up with the company to start lending to its employees.
   offer_triggered_by: Value indicating MANUAL underwriting. If the value is MANUAL, then it is MANUAL underwriting.
-  requested_amount: initial loan amount/term requested by client
-  requested_term: initial loan amount/term requested by client
-  maximum_loan_amount: Maximum loan amount the user is eligible for 
-  maximum_loan_term: Maximum loan term the user is eligible for 
-  policy_group: Policy used to deliermint the eligibility, pricing and loan sizing for the employee
-  loan_amount: Requested principal loan amount
-  loan_term: Requested duration of the loan in months.
+  requested_amount: initial loan amount requested by client.
+  requested_term: initial loan term requested by client.
+  maximum_loan_amount: Maximum loan amount the user is eligible for.
+  maximum_loan_term: Maximum loan term the user is eligible for.
+  policy_group: Policy used to determine the eligibility, pricing, and loan sizing for the employee.
   age: Age of the borrower in months.
   monthly_salary: Monthly income before any deductions.
   tenure: Length of borrower's employment with the current employer.
@@ -61,5 +59,5 @@ headers:
   flag_early_reloan: Flag to identify loans that are taken right after payment of the previous loan, but the previous loans are not closed in the system due to a delay in processes.
   dti_max_amount: Maximum loan amount that can be given after the capping limit for DTI. 
   nthp_max_amount: Maximum loan amount that can be given after the capping limit for Net Take Home Pay. 
-  XIRR: Effective annual rate of interest tracked by the regulator to ensure it is below 100%
-  salary_multiplier_max_amount:	Maximum loan amount that can be given after the capping limit for salary multiplier. 
+  XIRR: Effective annual rate of interest tracked by the regulator to ensure it is below 100 percent.
+  salary_multiplier_max_amount:	Maximum loan amount that can be given after the capping limit for salary multiplier.
