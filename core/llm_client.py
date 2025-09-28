@@ -64,9 +64,9 @@ class LLMClient:
         # Load provider-specific configuration (API key, model, etc.)
         self.llm_provider = llm_provider
         self.llm_config = get_provider_config(self.llm_provider)
-        self.llm_api_key = os.getenv("LLM_KEY")
+        self.llm_api_key = os.getenv("AI_KEY")
         self.llm_model = self.llm_config["model"]
-
+        #logger.info(f" in init ⚠️ using {self.llm_api_key}")
         if self.llm_provider == "gemini":
             self.llm_client = OpenAI(
                 api_key=self.llm_api_key,
@@ -87,7 +87,9 @@ class LLMClient:
         """
         func = "_validate"
         if not self.llm_api_key:
-            logger.error(f" in {func} ⚠️ API_KEY missing for {self.llm_provider}\n")
+            error_msg = f" in {func} ⚠️ API_KEY missing for {self.llm_provider}\n"
+            logger.error(error_msg)
+            raise RuntimeError(error_msg)
         if self.llm_model not in self.llm_config.get("all_models", []):
             logger.warning(
                 f" in {func} ⚠️ Model '{self.llm_model}' not listed in supported models: {self.llm_config.get('all_models', [])}\n"
@@ -111,7 +113,6 @@ class LLMClient:
         func = "respond"
         logger.info(f" in {func} 💬 {user_name} reached LLM module with {len(messages)} messages\n")
         logger.debug(f"in {func} Message: {messages}\n")
-
         try:
             if self.llm_provider == "gemini":
                 safe_tools = [sanitize_tool_for_gemini(t) for t in AVAILABLE_TOOLS]
@@ -129,8 +130,9 @@ class LLMClient:
             return response
 
         except Exception as e:
-            logger.error(f" in {func} ❌ LLM API call failed for {user_name}: {e}\n")
-            return None
+            error_msg = f" in {func} ❌ LLM API call failed for {user_name}: {e}\n"
+            logger.error(error_msg)
+            raise RuntimeError(error_msg)
 
     def process_user_request(
             self,
@@ -271,4 +273,5 @@ def test_llm_connections(ai_provider: str) -> str:
             logger.warning(f"⚠️ in {func} API returned no response\n")
     except Exception as e:
         logger.warning(f"❌ in {func} Unexpected error: {e}\n")
+    logger.info(f" exiting {func} with ai as {ai_provider}")
     return ai_provider

@@ -26,8 +26,14 @@ def create_app() -> FastAPI:
     """
     func = 'create_app'
     load_dotenv()
-    env = os.getenv("ENV", "local")
+    env = os.getenv("ENV", "LOCAL")
     logger.info(f" in {func} ENV {env} loaded\n")
+    VALID_ENVS = {"LOCAL", "DEV", "STAGING", "PROD"}
+
+    # 3️⃣  Validate
+    if env not in VALID_ENVS:
+        # create a root logger temporarily so this always shows
+        logger.error("❌ Invalid ENV value '%s'. Must be one of: %s",env,", ".join(sorted(VALID_ENVS)))
 
     install_missing_or_mismatched()
 
@@ -134,6 +140,7 @@ async def health_check():
 
 # If run directly (not via uvicorn)
 if __name__ == "__main__":
+
     import uvicorn
     logger.info(f" in __main__ PROFILER enabled: {enable_profiler}\n")
     logger.info("Starting Virtual Assistant API server")

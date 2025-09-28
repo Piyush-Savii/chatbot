@@ -15,7 +15,7 @@ from logger_setup import logger
 # The Google Cloud client library automatically detects this variable.
 load_dotenv()
 
-if os.getenv("ENV") == 'local':
+if os.getenv("ENV") == 'LOCAL':
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = os.getenv("GCP_KEY")
     logger.info(f"GOOGLE_APPLICATION_CREDENTIALS set to: {os.environ['GOOGLE_APPLICATION_CREDENTIALS']}")
 

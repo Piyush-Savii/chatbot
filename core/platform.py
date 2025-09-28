@@ -14,6 +14,8 @@ from messages import extract_query_and_metadata, validate_event
 from prompts import get_system_prompt
 from yaml_read import load_yaml
 from core.user_manager import UserManager
+import ssl
+
 
 #TODO error response to slack
 
@@ -33,7 +35,13 @@ class PlatformBase:
 
         self.router = APIRouter()
         self.user_manager = UserManager()
-        self.slack_client = WebClient(token=self.bot_token)
+
+        #TODO verification disbaled /Applications/Python\ 3.13/Install\ Certificates.command
+
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+        self.slack_client = WebClient(token=self.bot_token, ssl=ssl_context)
 
         self._validate()
         self._register_routes()

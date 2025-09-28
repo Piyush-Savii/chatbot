@@ -15,24 +15,6 @@ logger = logging.getLogger(BOT_NAME)
 logger.setLevel(getattr(logging, LOG_LEVEL, logging.INFO))
 logger.propagate = False  # don't double-log via root
 
-
-# 1️⃣  Standard environments you officially support
-VALID_ENVS = {"LOCAL", "DEV", "STAGING", "PROD"}
-
-# 2️⃣  Read and normalize
-env = os.getenv("ENV", "LOCAL").strip().lower()
-
-# 3️⃣  Validate
-if env not in VALID_ENVS:
-    # create a root logger temporarily so this always shows
-    logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s")
-    logging.error(
-        "❌ Invalid ENV value '%s'. Must be one of: %s",
-        env,
-        ", ".join(sorted(VALID_ENVS))
-    )
-    raise ValueError(f"Invalid ENV value '{env}'. Allowed: {', '.join(sorted(VALID_ENVS))}")
-
 # If uvicorn reloads, avoid adding handlers again
 if not logger.handlers:
     # Common formatter
@@ -47,7 +29,7 @@ if not logger.handlers:
     logger.addHandler(console_handler)
 
     # In local/dev, also log to a rotating file
-    if ENV in ("local", "dev", "development"):
+    if ENV in ("LOCAL", "DEV"):
         # logs directory relative to this file (stable regardless of CWD)
         base_dir = os.path.dirname(__file__)
         log_dir = os.path.join(base_dir, "logs")
