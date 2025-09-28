@@ -298,6 +298,7 @@ def get_prompt():
     prompts = ["The Data Set has the following tables"]
     # for all yaml file in the folder path call YamlToPrompt
     folder_path = os.getenv("TABLE_DESCRIPTOR")
+    logger.debug(f"TABLE DESCRIPTOR PATH = {folder_path}")
     for i, filename in enumerate(os.listdir(folder_path)):
         if filename.endswith(".yaml"):
             filepath = os.path.join(folder_path, filename)

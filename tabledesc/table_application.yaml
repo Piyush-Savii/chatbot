@@ -60,4 +60,4 @@ headers:
   dti_max_amount: Maximum loan amount that can be given after the capping limit for DTI. 
   nthp_max_amount: Maximum loan amount that can be given after the capping limit for Net Take Home Pay. 
   XIRR: Effective annual rate of interest tracked by the regulator to ensure it is below 100 percent.
-  salary_multiplier_max_amount:	Maximum loan amount that can be given after the capping limit for salary multiplier.
+  salary_multiplier_max_amount: Maximum loan amount that can be given after the capping limit for salary multiplier.

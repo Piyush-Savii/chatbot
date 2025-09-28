@@ -29,9 +29,7 @@ def create_app() -> FastAPI:
     env = os.getenv("ENV", "local")
     logger.info(f" in {func} ENV {env} loaded\n")
 
-    # Install Python dependencies if not in production
-    if env != "production":
-        install_missing_or_mismatched()
+    install_missing_or_mismatched()
 
     # Check if AI model (e.g., OpenAI, Gemini) is reachable
     ai_provider = os.getenv("AI_PROVIDER")
