@@ -14,8 +14,8 @@ string_lookup_fields:
   employment_rank
   marital_status
   employment_type
-#  group_name_aggregated
-#  company_name_aggregated
+ # group_name_aggregated
+ # company_name_aggregated
 headers:
   application_id: Primary key for loan application. one user can have many applications, some may be rejected and some may be approved.
   product_id: Primary key for disbursed loan application ( a.k.a loan product).

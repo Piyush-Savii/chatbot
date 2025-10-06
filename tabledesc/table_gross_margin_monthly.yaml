@@ -1,0 +1,48 @@
+# table_id: data-analytics-254406.mart_portfolio_management.gross_margin_monthly
+# dataset_id: data-analytics-254406.mart_portfolio_management.
+# table_description: Google BigQuery Table containing , how much money is left after paying the costs directly tied to delivering the product (before overhead, salaries, etc.).
+# string_lookup_fields:
+#   report_date
+#   disbursed_date
+#   loan_type
+#   employment_rank
+#   purpose
+#   default_status
+#   loan_status
+#   payroll_type
+#   employment_type
+
+# headers:
+#   report_date: The date at which the report was generated.
+#   loan_key: Primary key for disbursed loans application ( a.k.a loan product). One on one mapping with product_id.
+#   product_id: Primary key for disbursed loan application ( a.k.a loan product).
+#   company_key: Primary key to identify the company the borrower works for. We tie up with the company to start lending to its employees.
+#   borrower_key: Primary key to identify the borrowers. a user once his loan is approved and disbursed will be a borrower.
+#   status:  Status of the loan application.
+#   status_agg: 
+#   prev_status:
+#   last_paid_date: The date at which the last amount was paid by the borrower of its installment.
+#   completed_date: The date at which the borrower padi completed the installment and fully returned all its amount.
+#   loan_term: The term period for which the loan was disbursed.
+#   loan_type: Type of loan provided to the borrowere (like New Loan, Refinanced, Reloan)
+#   employment_rank: Rank of borrower at his own parent company.
+#   employment_type: This tells about the borrower in his own parent company weather he is a (e.g Regular or Project Based).
+#   payroll_type: This tells about the payroll of the borrower in his parent company(e.g Bi-monthly, Weekly).
+#   purpose: The purpose for which the borrower has applied for loan in the company.
+#   principal_amount: The amount 
+#   interest_paid: The intrest paid by the borrower on his principal amount.
+#   principal_paid: The amount paid by the borrower at total after all the installments.
+#   total_paid: The total amount paid the borrower after completing all the installment.
+#   days_from_disb: Total number of days 
+#   MOB: Months completed by the loan (a.k.a. months on books), i.e. the gap in months between disbursed date and today's date.
+#   origination_fee:
+#   average_daily_principal_balance:
+#   disbursed_amount:  Amount that company can offer to the user based on evaluating the other factors.
+#   total_amount_disbursed: Total amount that was disbursed by the company after evaluating the user application and its factors.
+#   collection: collection rate per application based on amount disbursed and amount received.
+
+
+
+
+
+

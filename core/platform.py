@@ -15,6 +15,9 @@ from prompts import get_system_prompt
 from yaml_read import load_yaml
 from core.user_manager import UserManager
 
+# LOGGER PAGE TO STORE THE DATA FROM USER AND AI
+from chatbot.user_data import record_event 
+
 #TODO error response to slack
 
 
@@ -93,7 +96,17 @@ class PlatformBase:
         if user_query is None:
             logger.error(f" in {func} Message validation failed\n")
             return {"status": "error"}
-
+        
+        #-------------------------------------SEND THE USER_DETAILS TO THE DATABASE
+        
+        record_event(
+             event_type="user_request",
+             user_id=user_id,
+             channel_id=channel_id,
+             request_text=user_query
+            )
+        
+        
         conversation_history = user_obj.get_history()
         if conversation_history:
             logger.debug(f" in {func} conversation_history - {conversation_history[0]}")
@@ -118,6 +131,17 @@ class PlatformBase:
         output = response[-1]["content"]
         user_obj.add_message(role="user", content=user_query)
         user_obj.add_message(role="assistant", content=output)
+        
+        # ----------------------------------------------- STORE AI RESPONSE IN BIGQUERY ---
+        
+        record_event(
+             event_type="ai_response",
+             user_id=user_id,
+             channel_id=channel_id,
+             request_text=user_query,
+             response_text=output,
+             model="gpt-4.0"  
+        )
 
         # Extract the image data from _original_content
 #        base64_image = response[-2]["_original_content"]["data"]["image"]

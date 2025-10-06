@@ -1,0 +1,52 @@
+table_id: data-analytics-254406.mart_portfolio_management.application
+dataset_id: data-analytics-254406.mart_portfolio_management.
+table_description: Google BigQuery Table containing information anout loan user made by borrowers, regardless of whether they were approved, rejected, or still pending.
+string_lookup_fields:
+  date_application
+  week_application
+  month_application
+  group_name
+  company_name
+  requested_amount 
+  policy_group
+  loan_amount
+  monthly_salary
+headers:
+  application_id: Primary key for loan application. one user can have many applications, some may be rejected and some may be approved.
+  user_id: Primary key to identify the borrower. One on one mapping with borrower_id.
+  loan_type: Type of loan like :- New Loan - a fresh loan, Refinanced Loan - next loan by prematurely closing the primary loan and adding the outstanding balance of first loan to the next loan and adding , Reloan, Reissue, EWA.
+  loan_term: Duration of the loan in months.
+  company_name: Name of the borrowers employer (or company).
+  group_name: Name of the borrowers employer group ( or umbrella corporation).
+  is_BPO: Boolean flag if the industry or company is BPO or Not ( or Non-BPO).
+  age: Age of the borrower in months.
+  month_application:
+  week_application:
+  date_application:
+  user_id: Users Id stored to realte the application to the user.
+  status: Status of the application according to the company based on its performance and details.
+  cancellation_reason: Reason for the cancellation of hte application.
+  industry: Industry to which the company belongs.
+  requested_amount: The amount requested by the user according to the application.
+  requested_term: Loan term period for which the user has requested the on his application.
+  maximum_loan_amount: Maximum loan amount that the company can grant after evaluating the application.
+  maximum_loan_term: Maximum loan term compny can grant after evaluating the factors present on the application.
+  policy_group: Identifier to understand which underwriting policy was used for the loan, always use like.
+  loan_amount: Loan amount finally disbursed by the company to the borrower.
+  loan_term: Loan term period finally granted to the company.
+  monthly_salary: Monthly Salary of the borrower , related to his parent company.
+  cancellation_triggered_by: If the loan application has been cancelled , then this will be responsible for it.
+  dtime_prev_status: Date and time at which the previous status was updated.
+  dtime_initialized: Date and time at which the application was initialized.
+  dtime_offer_accepted: Date and time at which the offer made by the company, respective of user's application was accepted by the user.
+  dtime_incomplete_document: Date and time at which the application submited by the User was found to lack the documents.
+  dtime_tier_1_review: Date and time at which the application was sent to be reviwed by the loan-officer.
+  dtime_approved: Date and time at which the application request was approved.
+  dtime_cancelled: Date and tiem at which the application was cancelled due to specific reason, and cannot be carried forward.
+
+
+  
+
+  
+ 
+

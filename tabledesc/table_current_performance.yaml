@@ -1,0 +1,35 @@
+# table_id: data-analytics-254406.mart_portfolio_management.current_performance
+# dataset_id: data-analytics-254406.mart_portfolio_management.
+# table_description: Google BigQuery Table containing current performance of the application received the current month.
+# string_lookup_fields:
+#   industry
+#   group_name
+#   company_name
+#   loan_status
+
+# headers:
+#   report_date: The date at which the report has been generted for the application received  from the borrower.
+#   borrower_id: Primary key to identify the borrowers. a user once his loan is approved and disbursed will be a borrower.
+#   application_id: Primary key for loan application. one user can have many applications, some may be rejected and some may be approved.
+#   loan_key: Primary key for disbursed loans application ( a.k.a loan product). One on one mapping with product_id.
+#   product_id: Primary key for disbursed loan application ( a.k.a loan product).
+#   loan_term: Duration of the loan in months.
+#   loan_principal: Principal loan amount disbursed, included the fees and charges.
+#   loan_status: Current Status of the loan application (e.g at which stage like:- under_repaymnet, )
+#   principal_paid: The principal amount paid by the borrower of its loan amount.
+#   intrest_paid: The intrest amount paid by the borrower on its principal amount.
+#   total_paid: The total amount paid by the borrower , combining both principal and interest amounts.
+#   principal_outstanding:
+#   interest_outstanding:
+#   total_outstanding:
+#   days_past_due:
+#   days_past_due_expected: 
+#   days_past_due_prev:
+#   disbursed_date: The date on which the loan was disbursed.
+#   disbursed_month: The month on which the loan was disbursed.
+#   disbursed_quarter: The quater of the year on which the loan was disbursed.
+#   disbursed_year: The year on  which the loan was disbursed.
+#   company_name: Name of the borrowers employer (or company).
+#   group_name: Name of the borrowers employer group ( or umbrella corporation).
+#   industry: Industry classification of borrower's company.
+#   is_BPO: Boolean flag if the industry or company is BPO or Not ( or Non-BPO).

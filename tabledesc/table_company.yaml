@@ -1,0 +1,27 @@
+table_id: data-analytics-254406.mart_portfolio_management.company
+dataset_id: data-analytics-254406.mart_portfolio_management.
+table_description: Google BigQuery Table containing information about the company(clients) detials and operations.
+string_lookup_fields:
+  company_name
+  company_status
+  industry
+  group_name
+  payroll_freq
+  payroll_dates
+  tier_code
+  setup_code
+  rm_name  
+headers:
+  company_name: Name of the borrowers employer (or company).
+  group_name: Name of the borrowers employer group ( or umbrella corporation).
+  company_status: The current status of the company based on its performance matrix.
+  industry: The industry to which the company belongs and provides services.
+  payroll_freq: The payroll frequecy of the borrower according to his parent company(e.g Bi_Monthly, Weekly).
+  payroll_date: The date at which the payroll of the borrower is being released in the month.(Date of getting salary)
+  launch_date: The date at which the company was launched for the facilities.
+  launch_month:  The month at which the company was launched for facilities.
+  dtime_updated: The date and time at which the information about the company is being updated.
+
+  
+  
+  

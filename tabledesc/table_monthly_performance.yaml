@@ -1,0 +1,51 @@
+# table_id: data-analytics-254406.mart_portfolio_management.monthly_performance
+# dataset_id: data-analytics-254406.mart_portfolio_management.
+# table_description: Google BigQuery Table containing loan status and overall company's monthly performance contains set of information about overall collection from a loan.
+# string_lookup_fields:
+#   company_name
+#   group_name
+#   industry
+#   loan_status
+#   loan_type
+  
+
+# headers:
+#   borrower_id: Primary key to identify the borrowers. a user once his loan is approved and disbursed will be a borrower.
+#   application_id: Primary key for loan application. one user can have many applications, some may be rejected and some may be approved.
+#   loan_key: Primary key for disbursed loans application ( a.k.a loan product). One on one mapping with product_id.
+#   product_id: Primary key for disbursed loan application ( a.k.a loan product).
+#   loan_term: Duration of the loan in months.
+#   loan_principal: Principal loan amount disbursed, included the fees and charges.
+#   loan_status: Current status of the loan after loan payment.
+#   loan_type: Type of loan like :- New Loan - a fresh loan, Refinanced Loan - next loan by prematurely closing the primary loan and adding the outstanding balance of first loan to the next loan and adding , Reloan, Reissue, EWA.
+#   principal_paid: The portion of the principal amountof the loan paid by th borrower.
+#   interest_paid: The amount paid by the borrower on the principal by the borrower.
+#   total_paid: Total amount paid by the borrower in context with the loan amount approved.
+#   disbursed_date: The date at which the loan has been disbursed.
+#   disbursed_month: The month at which the loan amount has been disbursed.
+#   disbursed_quarter: The yearly quater at which the loan amount has been disbursed.
+#   disbursed_year: The year at which the loan amount has been disbursed.
+#   industry: The industry to which the borrower belongs.
+#   group_name: Name of the borrowers employer group ( or umbrella corporation).
+#   company_name: Name of the borrowers employer (or company).
+#   is_BPO: Boolean flag if the industry or company is BPO or Not ( or Non-BPO).
+#   principal_paid_prev: Principal amount paid by the borrower 
+#   interest_paid_prev:
+#   total_paid_prev:
+#   principal_outstanding_prev:
+#   interest_outstanding_prev:
+#   total_outstanding_prev:
+
+#   principal_outstanding:
+#   interest_outstanding:
+#   total_outstanding:
+#   days_past_due:
+#   par_30_flag:
+#   par_60_flag:
+#   par_90_flag:
+#   par_120_flag:
+#   par_150_flag:
+#   par_180_flag:
+
+
+
